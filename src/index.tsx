@@ -5,7 +5,7 @@ import Form from './components/Form/form'
 
 ReactDom.render(
    <div>
-    <Header text="React/TS "></Header>
+    <Header text="React/TS Form "></Header>
     <Form></Form>
     </div>,
     document.querySelector('#root')

@@ -1,30 +1,36 @@
 import * as React from 'react';
-import RadioButton from '../RadioButton/radioButton'
+import RadioButton from '../RadioButton/radioButton';
+import SubmitButton from '../SubmitButton/submitButton'
+
+//ask about using the ... 
 
 const Form=()=>{
     return(
         <div>
         
-        <form style={{color: 'darkgrey',textAlign:'center'}}>
+        <form >
+        <div className="form-group">
             <label>Name: </label>
             <br/>
-            <input></input>
+            <input type="name" className="form-control" id="name"></input>
             <br/>
             <br/>
             <label>Email: </label>
             <br/>
-            <input></input>
+            <input type="email" className="form-control" id="email"></input>
             <br/>
             <br/>
             <label style={{textAlign:'left'}}>Gender: </label>
             <br/>
-            <label>Male: </label>
-            <RadioButton choice={false} ></RadioButton>
-            <label>Female: </label>
-            <RadioButton choice={false} ></RadioButton>
+            
+            <RadioButton {...{choice:false, text:"Male"}}>{}</RadioButton>
+            
+            <RadioButton {...{choice:false, text:"Female"}}>{}</RadioButton>
+            
             <br/>
             <br/>
-            <button>Submit data</button>
+            <SubmitButton />
+            </div>
         </form>
         </div>
     )

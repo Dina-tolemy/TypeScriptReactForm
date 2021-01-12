@@ -1,13 +1,14 @@
 import * as React from 'react';
 
 interface RadioProp {
-    choice: boolean
+    choice: boolean,
+    text: string
     
 }
 //function Header(props){
 const RadioButton = (props: RadioProp) => {
     return(
-        <input type="radio" id="genderRadio" />
+        <label><input type="radio" id="genderRadio" />{props.text}</label>
 
     )
 }
