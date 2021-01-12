@@ -1,16 +1,28 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Form = void 0;
 var React = require("react");
-function Form() {
+var radioButton_1 = require("../RadioButton/radioButton");
+var Form = function () {
     return (React.createElement("div", null,
-        React.createElement("h5", null, "Enter your information: "),
-        React.createElement("form", null,
-            React.createElement("label", null, "Name:"),
+        React.createElement("form", { style: { color: 'darkgrey', textAlign: 'center' } },
+            React.createElement("label", null, "Name: "),
+            React.createElement("br", null),
             React.createElement("input", null),
             React.createElement("br", null),
             React.createElement("br", null),
-            React.createElement("label", null, "Email:"),
-            React.createElement("input", null))));
-}
-exports.Form = Form;
+            React.createElement("label", null, "Email: "),
+            React.createElement("br", null),
+            React.createElement("input", null),
+            React.createElement("br", null),
+            React.createElement("br", null),
+            React.createElement("label", { style: { textAlign: 'left' } }, "Gender: "),
+            React.createElement("br", null),
+            React.createElement("label", null, "Male: "),
+            React.createElement(radioButton_1.default, { choice: false }),
+            React.createElement("label", null, "Female: "),
+            React.createElement(radioButton_1.default, { choice: false }),
+            React.createElement("br", null),
+            React.createElement("br", null),
+            React.createElement("button", null, "Submit data"))));
+};
+exports.default = Form;
