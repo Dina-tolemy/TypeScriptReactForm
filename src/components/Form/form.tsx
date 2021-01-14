@@ -14,25 +14,40 @@ interface SubmitFormData {
   phone: string;
 }
 const Form: React.FC<SubmitFormData> = (props) => {
-  const [formName, setFormName] = useState('');
-  const [formEmail, setFormEmail] = useState('');
+  const [formName, setFormName] = useState("");
+  const [formEmail, setFormEmail] = useState("");
   const [formPhone, setFormPhone] = useState([]);
+  const [formGender, setFormGender] = useState();
 
   const submitData = () => {
-    alert( "may name is"+formName+ "email is : " + formEmail +"and this are my phone numbers"+ formPhone);
+    alert(
+      "may name is " +
+        formName +
+        "I am a : " +
+        formGender +
+        " and my email is : " +
+        formEmail +
+        " and this are my phone numbers: " +
+        formPhone
+    );
   };
 
   function handleInputName(event) {
     const { name, value } = event.target;
-    setFormName(value)
+    setFormName(value);
   }
   function handleInputEmail(event) {
     const { name, value } = event.target;
-    setFormEmail(value)
+    setFormEmail(value);
   }
   function handleInputPhone(event) {
     const { name, value } = event.target;
-    setFormPhone(value)
+    setFormPhone(value);
+  }
+
+  function handleInputGender(event) {
+    const { name, value } = event.target;
+    setFormGender(value);
   }
 
   return (
@@ -61,21 +76,41 @@ const Form: React.FC<SubmitFormData> = (props) => {
           ></input>
           <br />
           <br />
+
           <label>Phone: </label>
           <br />
-          <input
-            type="phone"
-            className="form-control"
-            id="phone"
-            name="phone"
-            onChange={handleInputPhone}
-          ></input><button className="btn btn-success ">+</button>
+            <input
+              type="phone"
+              className="form-control"
+              id="phone"
+              name="phone"
+              onChange={handleInputPhone}
+            ></input>
+            <button className="btn btn-success ">+</button>
           <br />
           <br />
           <label style={{ textAlign: "left" }}>Gender: </label>
           <br />
-          <RadioButton choice={false} text={"Male"}></RadioButton>
-          <RadioButton choice={false} text={"Male"}></RadioButton>
+          <label>
+            <input
+              type="radio"
+              id="genderRadio"
+              value="male"
+              name="male"
+              onChange={handleInputGender}
+            />
+            Male:{" "}
+          </label>
+          <label>
+            <input
+              type="radio"
+              id="genderRadio"
+              value="female"
+              name="Femal"
+              onChange={handleInputGender}
+            />
+            Female:{" "}
+          </label>
           <br />
           <br />
           <button className="btn btn-success " onClick={submitData}>

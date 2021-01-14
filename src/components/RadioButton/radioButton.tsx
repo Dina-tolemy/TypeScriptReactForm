@@ -11,6 +11,10 @@ const RadioButton = (props: RadioProp) => {
     const [inputText,setInputText]=useState([]);
     const [inputCheck,setInputCheck]=useState('');
 
+    function handleChoice() {
+        
+      }
+
     return(
         
         <label><input type="radio" id="genderRadio" />{props.text}</label>
