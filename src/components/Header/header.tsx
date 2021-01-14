@@ -1,4 +1,5 @@
 import * as React from 'react';
+import * as Styled from '../style'
 
 interface HeaderProp {
     text: string
@@ -7,7 +8,7 @@ interface HeaderProp {
 //function Header(props){
 const Header = (props: HeaderProp) => {
     return(
-        <h1 style={{color: '#666699',textAlign:'center',fontFamily:'Helvetica'}}>{props.text}</h1>
+        <Styled.MainHeader>{props.text}</Styled.MainHeader>
     )
 }
 

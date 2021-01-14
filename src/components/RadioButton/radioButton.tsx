@@ -8,7 +8,8 @@ interface RadioProp {
 //function Header(props){
 const RadioButton = (props: RadioProp) => {
     return(
-        <label><input type="radio" id="genderRadio" />{props.text}</label>
+        
+        <label><input type="radio" id="genderRadio" style={{margin:"10px"}} />{props.text}</label>
 
     )
 }

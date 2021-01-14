@@ -1,13 +1,21 @@
 import * as React from 'react';
 import RadioButton from '../RadioButton/radioButton';
-import SubmitButton from '../SubmitButton/submitButton'
+import SubmitButton from '../SubmitButton/submitButton';
+import * as Styled from '../style';
+
 
 //ask about using the ... 
 
-const Form=()=>{
+interface SubmitFormData {
+    name: string;
+    email: string;
+    gender: string;
+  }
+const Form=(props:SubmitFormData)=>{
+
     return(
         <div>
-        
+    
         <form >
         <div className="form-group">
             <label>Name: </label>
@@ -23,10 +31,8 @@ const Form=()=>{
             <label style={{textAlign:'left'}}>Gender: </label>
             <br/>
             
-            <RadioButton {...{choice:false, text:"Male"}}>{}</RadioButton>
-            
-            <RadioButton {...{choice:false, text:"Female"}}>{}</RadioButton>
-            
+            <RadioButton choice={false} text={"Male"}></RadioButton>
+            <RadioButton choice={false} text={"Male"}></RadioButton>
             <br/>
             <br/>
             <SubmitButton />
