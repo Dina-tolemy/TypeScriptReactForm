@@ -24,24 +24,35 @@ const Form: React.FC<SubmitFormData> = (props) => {
   const [formGender, setFormGender] = useState("");
   const [company, setCompany] = useState("");
    const [genderToggle,setgenderToggle]=useState(false);
-  const togglePhone = () => setphoneDiv(true);
+  
   //const toggleGenderbutton=()=>setgenderToggle(!genderToggle);
   //const toggleGender=()=>
+  const togglePhone = () => {
+    setphoneDiv(true);
+   
+    };
+
+    const deletephone=()=>{
+      setphoneDiv(false);
+      formPhone.splice(-1,1);
+    }
+
 
   const submitData = () => {
     confirm(
-      " name is: " +
+      " Supplied Information"+
+      " \n \n name is:  " +
         formName +
-        "\n you are a: " +
+        "\n \n Gender:  " +
         formGender +
-        " \n,and your  email is : " +
+        " \n\n  your  email is:  " +
         formEmail +
-        "\n  and this are available phone numbers:  " +
+        "\n\n  and this are available phone numbers:  " +
         formPhone +
-        "\n Employment Status:  " +
+        "\n\n Employment Status:  " +
         employed +
         " " +
-        "\n company name if available: " +company
+        "\n\n company name if available:  " +company
     );
   };
 
@@ -51,6 +62,9 @@ const Form: React.FC<SubmitFormData> = (props) => {
   const handleInputEmail = (event) => {
     setFormEmail(event.target.value);
   };
+  ///ask about an action which will take the final value not with each key down
+  ////// or another way to add to this array
+  ///////// 
   const handleInputPhone = (event) => {
     const name = event.target.value;
 
@@ -72,16 +86,13 @@ const Form: React.FC<SubmitFormData> = (props) => {
       //toggleEmpDiv();
     } else {
       setEmpDiv(false);
+      setCompany("not employed");
     }
   };
   const handleCompanyName = (e) => {
     setCompany(e.target.value);
   };
 
-  const RemovePhone = (e) => {
-    let name = e.target.value;
-    setFormPhone(formPhone.filter((e) => e !== name));
-  };
 
   return (
     <div>
@@ -120,26 +131,19 @@ const Form: React.FC<SubmitFormData> = (props) => {
             onChange={handleInputPhone}
           ></input>
           <br />
-          <input
-            type="phone"
-            className="form-control"
-            id="phone"
-            name="phone"
-            onChange={handleInputPhone}
-          ></input>
-          <br/>
           {
           phoneDiv ? (
 
-            
+            <div>
               <input type="phone" className="form-control" name="phone" onChange={handleInputPhone} />
-              
+              <span className="btn btn-primary" onClick={deletephone}>-</span>
+              </div>
           ) : (
-            <div></div>
+            <label></label>
           )}
           <br/>
           <span className="btn btn-primary" onClick={togglePhone}>
-            + phone number
+            add another phone number
           </span>
           <br />
           <br />
