@@ -1,9 +1,10 @@
 import * as React from "react";
 import RadioButton from "../RadioButton/radioButton";
 import SubmitButton from "../SubmitButton/submitButton";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import * as Styled from "../style";
 import { useForm } from "react-hook-form";
+import PhoneDiv from "../Phone";
 
 //ask about using the ...
 
@@ -17,38 +18,70 @@ const Form: React.FC<SubmitFormData> = (props) => {
   const [formName, setFormName] = useState("");
   const [formEmail, setFormEmail] = useState("");
   const [formPhone, setFormPhone] = useState([]);
-  const [formGender, setFormGender] = useState();
+  const [phoneDiv, setphoneDiv] = useState(false);
+  const [employed, setEmployed] = useState("");
+  const [empDiv, setEmpDiv] = useState(false);
+  const [formGender, setFormGender] = useState("");
+  const [company, setCompany] = useState("");
+   const [genderToggle,setgenderToggle]=useState(false);
+  const togglePhone = () => setphoneDiv(true);
+  //const toggleGenderbutton=()=>setgenderToggle(!genderToggle);
+  //const toggleGender=()=>
 
   const submitData = () => {
-    alert(
-      "may name is " +
+    confirm(
+      " name is: " +
         formName +
-        "I am a : " +
+        "\n you are a: " +
         formGender +
-        " and my email is : " +
+        " \n,and your  email is : " +
         formEmail +
-        " and this are my phone numbers: " +
-        formPhone
+        "\n  and this are available phone numbers:  " +
+        formPhone +
+        "\n Employment Status:  " +
+        employed +
+        " " +
+        "\n company name if available: " +company
     );
   };
 
-  function handleInputName(event) {
-    const { name, value } = event.target;
-    setFormName(value);
-  }
-  function handleInputEmail(event) {
-    const { name, value } = event.target;
-    setFormEmail(value);
-  }
-  function handleInputPhone(event) {
-    const { name, value } = event.target;
-    setFormPhone(value);
-  }
+  const handleInputName = (event) => {
+    setFormName(event.target.value);
+  };
+  const handleInputEmail = (event) => {
+    setFormEmail(event.target.value);
+  };
+  const handleInputPhone = (event) => {
+    const name = event.target.value;
 
-  function handleInputGender(event) {
-    const { name, value } = event.target;
-    setFormGender(value);
-  }
+    setFormPhone([...formPhone, name]);
+  };
+
+  const handleInputGender = (event) => {
+
+    setFormGender(event.target.value);
+    let g= event.target.value;
+    setEmployed(g);
+  };
+
+  const handleEmployedValue = (event) => {
+    let employmentStat= event.target.value;
+    setEmployed(employmentStat);
+    if (employmentStat === "employed") {
+      setEmpDiv(true);
+      //toggleEmpDiv();
+    } else {
+      setEmpDiv(false);
+    }
+  };
+  const handleCompanyName = (e) => {
+    setCompany(e.target.value);
+  };
+
+  const RemovePhone = (e) => {
+    let name = e.target.value;
+    setFormPhone(formPhone.filter((e) => e !== name));
+  };
 
   return (
     <div>
@@ -77,16 +110,38 @@ const Form: React.FC<SubmitFormData> = (props) => {
           <br />
           <br />
 
-          <label>Phone: </label>
+          <label>Phone Numbers: </label>
           <br />
-            <input
-              type="phone"
-              className="form-control"
-              id="phone"
-              name="phone"
-              onChange={handleInputPhone}
-            ></input>
-            <button className="btn btn-success ">+</button>
+          <input
+            type="phone"
+            className="form-control"
+            id="phone"
+            name="phone"
+            onChange={handleInputPhone}
+          ></input>
+          <br />
+          <input
+            type="phone"
+            className="form-control"
+            id="phone"
+            name="phone"
+            onChange={handleInputPhone}
+          ></input>
+          <br/>
+          {
+          phoneDiv ? (
+
+            
+              <input type="phone" className="form-control" name="phone" onChange={handleInputPhone} />
+              
+          ) : (
+            <div></div>
+          )}
+          <br/>
+          <span className="btn btn-primary" onClick={togglePhone}>
+            + phone number
+          </span>
+          <br />
           <br />
           <br />
           <label style={{ textAlign: "left" }}>Gender: </label>
@@ -99,20 +154,59 @@ const Form: React.FC<SubmitFormData> = (props) => {
               name="male"
               onChange={handleInputGender}
             />
-            Male:{" "}
+             Male {" "} {" "} 
           </label>
           <label>
             <input
               type="radio"
               id="genderRadio"
               value="female"
-              name="Femal"
+              name="Female"
               onChange={handleInputGender}
             />
-            Female:{" "}
+            {" "} Female {" "} {" "} 
           </label>
           <br />
           <br />
+          <label style={{ textAlign: "left" }}>Employed: </label>
+          <br />
+          <label>
+            <input
+              type="radio"
+              id="empRadio"
+              value="employed"
+              name="employed"
+              onChange={handleEmployedValue}
+            />
+            Yes{" "}
+          </label>
+          <label>
+            <input
+              type="radio"
+              id="empRadio"
+              value="not employed"
+              name="employed"
+              onChange={handleEmployedValue}
+            />
+            No{" "}
+          </label>
+          <br />
+          <br />
+          {empDiv ? (
+            <label>
+              Company name:
+              <input
+                type="text"
+                name="companyName"
+                className="form-control"
+                onChange={handleCompanyName}
+              />
+            </label>
+          ) : (
+            <div></div>
+          )}
+          <br/>
+          <br/>
           <button className="btn btn-success " onClick={submitData}>
             Submit Information
           </button>
